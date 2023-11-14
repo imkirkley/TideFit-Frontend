@@ -1,5 +1,4 @@
-// const url = 'https://localhost:5001/api/activity'
-const url = new URL("https://localhost:5000/api/activity");
+const url = 'https://localhost:5124/api/activity'
 
 const render = () => 
 {
