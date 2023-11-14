@@ -1,0 +1,75 @@
+.navbar{
+    background-color: #660000;
+    position: fixed;
+    float: left;
+    top: 0;
+    width: 100%;
+    font-size: xx-large;
+    color: white;
+    -webkit-text-stroke: .5px;
+    -webkit-text-stroke-color: black;
+}
+
+.mainsection{
+    color: white;
+    margin-top: 50px;   
+    padding: 100px 100px;
+}
+
+.buttonholder{
+    position: fixed;
+    right: 10px;
+    bottom: 20%;
+}
+
+.modal {
+    display: none;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.center {
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.modal-content {
+    display: block;
+    background-color: #fefefe;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 50%;
+}
+
+.close {
+    float: right;
+    cursor: pointer;
+}
+
+form {
+    text-align: left;
+}
+
+label, input {
+    display: block;
+    margin-bottom: 10px;
+}
+
+button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.stop-scrolling {
+    height: 100%;
+    overflow: hidden;
+}
