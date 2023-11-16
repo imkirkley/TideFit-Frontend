@@ -1,4 +1,4 @@
-const url = 'https://pa4databaseside-569b54525a50.herokuapp.com/api/activity'
+const url = 'http://localhost:5000/api/activity'
 
 const render = () => 
 {
