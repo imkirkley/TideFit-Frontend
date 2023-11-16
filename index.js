@@ -1,4 +1,4 @@
-const url = 'https://pa4databaseside-569b54525a50.herokuapp.com/'
+const url = 'https://pa4databaseside-569b54525a50.herokuapp.com/api/activity'
 
 const render = () => 
 {
