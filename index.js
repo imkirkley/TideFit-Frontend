@@ -2,7 +2,6 @@ const url = 'http://localhost:5000/api/activity'
 
 const render = () => 
 {
-    console.log('test')
     getActivities()
 }
 
@@ -123,7 +122,7 @@ async function handleModalSubmission(){
     const pin = document.getElementById('pin').checked
     
     //handle data
-    let activity = {exerciseID: exerciseID, activityType: activityType, distance: distance, dateCompleted:dateCompleted, pin:pin, deleted:false }
+    let activity = {activityType: activityType, distance: distance, dateCompleted:dateCompleted, pin:pin, deleted:false }
     await fetch(url, {
         method: "POST",
         headers: {
