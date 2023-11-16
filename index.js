@@ -1,4 +1,4 @@
-const url = 'https://localhost:5001/api/activity'
+const url = 'https://localhost:5000/api/activity'
 
 const render = () => 
 {
@@ -8,7 +8,7 @@ const render = () =>
 
 const getActivities = function() 
 {
-    fetch(url.href, {mode: 'no-cors'}).then((response) => {
+    fetch(url).then((response) => {
         if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
         }
@@ -80,7 +80,7 @@ async function handlePinStatus (myActivities, index) {
     const exerciseID = myActivities[index].exerciseID
 
     await fetch(`${url}/${exerciseID}`, {
-        method: 'DELETE',
+        method: 'PUT',
         body: JSON.stringify(myActivities[index]),
         headers: {
             accept: "*/*",
