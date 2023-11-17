@@ -126,6 +126,7 @@ async function handleModalSubmission(event){
     
     //handle data
     const activity = {ActivityType: activityType, Distance: distance, DateCompleted: dateCompleted, Pin:pin, Deleted:false }
+    console.log(activity)
     try {
         const response = await fetch(url, {
             method: "POST",
