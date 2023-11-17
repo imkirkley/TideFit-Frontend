@@ -76,12 +76,13 @@ async function handleDelete (activityID) {
 async function handlePinStatus (id) {
     const activity = myActivities.find(act => act.id === id)
     const changedActivity = {
-                      ActivityType: activity.ActivityType, 
-                      Distance: activity.Distance, 
+                      ActivityType: activity.activityType, 
+                      Distance: activity.distance, 
                       DateCompleted: activity.dateCompleted, 
                       Pin: !activity.pin, 
                       Deleted: activity.deleted,
     }
+    console.log(changedActivity)
     
     await fetch(`${url}/${id}`, {
         method: 'PUT',
