@@ -1,5 +1,7 @@
 const url = 'http://localhost:5000/api/activity'
 
+let myActivities = []
+
 const render = () => 
 {
     getActivities()
@@ -7,20 +9,13 @@ const render = () =>
 
 const getActivities = async function() 
 {
-    await fetch(url).then((response) => {
+    const response = await fetch(url)
         if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
         }
-        return response.json();
-    }).then((data) => {
-        populateTable(data); 
-    })
+    myActivities = await response.json()
+    populateTable(myActivities); 
 
-
-}
-
-function pinStatusChangeHandler(exerciseID){
-    passInExerciseId(exerciseID)
 }
 
 function populateTable(myActivities) {
@@ -59,19 +54,12 @@ function populateTable(myActivities) {
     html += `</table>`
     //pushes html to frontend 
     document.getElementById('maintable').innerHTML=html
-    
-    function passInExerciseId(exerciseID) {
-        const activity = myActivities.find(act => act.exerciseID === exerciseID);
-        if(activity) {
-            handlePinStatus(activity);
-        }
-    }
 }
 
 //handles deleting by changing the "deleted" var
 async function handleDelete (activityID) {
     const exerciseID = activityID;
-
+    console.log(exerciseID)
     await fetch(`${url}/${exerciseID}`, {
         method: 'DELETE',
         headers: {
@@ -85,7 +73,8 @@ async function handleDelete (activityID) {
 }
 
 //handles whether to pin an activity to the top of the table
-async function handlePinStatus (activity) {
+async function handlePinStatus (exerciseID) {
+    const activity = myActivities.find(act => act.exerciseID === exerciseID)
     const changedActivity = {
                       id: activity.exerciseID, 
                       ActivityType: activity.ActivityType, 
@@ -95,7 +84,7 @@ async function handlePinStatus (activity) {
                       Deleted:activity.deleted
     }
     
-    await fetch(`${url}/${activity.exerciseID}`, {
+    await fetch(`${url}/${exerciseID}`, {
         method: 'PUT',
         body: JSON.stringify(changedActivity),
         headers: {
