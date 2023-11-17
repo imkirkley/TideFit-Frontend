@@ -60,7 +60,6 @@ function populateTable(myActivities) {
 //handles deleting by changing the "deleted" var
 async function handleDelete (activityID) {
     const exerciseID = activityID;
-    console.log(exerciseID)
     await fetch(`${url}/${exerciseID}`, {
         method: 'DELETE',
         headers: {
@@ -85,7 +84,7 @@ async function handlePinStatus (id) {
                       Deleted:activity.deleted
     }
     
-    await fetch(`${url}/${id}`, {
+    await fetch(`${url}/${changedActivity.id}`, {
         method: 'PUT',
         body: JSON.stringify(changedActivity),
         headers: {
