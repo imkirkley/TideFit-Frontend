@@ -1,13 +1,13 @@
 const url = 'http://localhost:5000/api/activity'
 
-const render = () => 
+const render = async () => 
 {
     getActivities()
 }
 
-const getActivities = function() 
+const getActivities = async function() 
 {
-    fetch(url).then((response) => {
+    await fetch(url).then((response) => {
         if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
         }
