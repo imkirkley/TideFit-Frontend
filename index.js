@@ -76,6 +76,7 @@ async function handleDelete (activityID) {
 async function handlePinStatus (id) {
     const activity = myActivities.find(act => act.id === id)
     const changedActivity = {
+                      id: activity.id,
                       ActivityType: activity.activityType, 
                       Distance: activity.distance, 
                       DateCompleted: activity.dateCompleted, 
