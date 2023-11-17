@@ -40,14 +40,14 @@ function populateTable(myActivities) {
         <th scope="col">Delete</th>
     </tr>
     </thead>`;
-    myActivities.forEach(function(activity, index) {
+    myActivities.forEach(function(activity) {
         if(!activity.deleted){
             html += `<tbody>
             <tr>
           <th scope="row">${activity.activityType}</th>
           <td>${activity.distance}</td>
           <td>${activity.dateCompleted}</td>
-          <td><input type="checkbox" ${activity.pin ? 'checked' : ''} onchange="handlePinStatus(${activity})"></td>
+          <td><input type="checkbox" ${activity.pin ? 'checked' : ''} onchange="pinStatusChangeHandler(${activity.exerciseID})"></td>
           <td><button onclick="handleDelete(${activity.exerciseID})">Delete</button></td>
             </tbody>` }
     
@@ -70,6 +70,13 @@ async function handleDelete (activityID) {
         })
 
     render()
+
+    function pinStatusChangeHandler(exerciseID) {
+        const activity = myActivities.find(act => act.exerciseID === exerciseID);
+        if(activity) {
+            handlePinStatus(activity);
+        }
+    }
 }
 
 //handles whether to pin an activity to the top of the table
