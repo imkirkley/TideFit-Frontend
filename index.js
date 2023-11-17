@@ -40,7 +40,7 @@ function populateTable(myActivities) {
     </tr>
     </thead>`;
     myActivities.forEach(function(activity){
-        console.log(activity.Id)
+        console.log(activity.id)
 
     })
     myActivities.forEach(function(activity) {
@@ -50,8 +50,8 @@ function populateTable(myActivities) {
           <th scope="row">${activity.activityType}</th>
           <td>${activity.distance}</td>
           <td>${activity.dateCompleted}</td>
-          <td><input type="checkbox" ${activity.pin ? 'checked' : ''} onchange="handlePinStatus(${activity.Id})"></td>
-          <td><button onclick="handleDelete(${activity.Id})">Delete</button></td>
+          <td><input type="checkbox" ${activity.pin ? 'checked' : ''} onchange="handlePinStatus(${activity.id})"></td>
+          <td><button onclick="handleDelete(${activity.id})">Delete</button></td>
             </tbody>` }
     
     });        
