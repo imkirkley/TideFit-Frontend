@@ -85,7 +85,7 @@ async function handlePinStatus (id) {
                       Deleted:activity.deleted
     }
     
-    await fetch(`${url}/${exerciseID}`, {
+    await fetch(`${url}/${id}`, {
         method: 'PUT',
         body: JSON.stringify(changedActivity),
         headers: {
