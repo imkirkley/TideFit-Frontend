@@ -122,7 +122,7 @@ async function handleModalSubmission(){
     const pin = document.getElementById('pin').checked
     
     //handle data
-    let activity = {activityType: activityType, distance: distance, dateCompleted:dateCompleted, pin:pin, deleted:false }
+    let activity = {ActivityType: activityType, Distance: distance, DateCompleted:dateCompleted, Pin:pin, Deleted:false }
     await fetch(url, {
         method: "POST",
         headers: {
