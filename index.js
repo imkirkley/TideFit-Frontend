@@ -46,8 +46,8 @@ function populateTable(myActivities) {
           <th scope="row">${activity.activityType}</th>
           <td>${activity.distance}</td>
           <td>${activity.dateCompleted}</td>
-          <td><input type="checkbox" ${activity.pin ? 'checked' : ''} onchange="pinStatusChangeHandler(${activity.exerciseID})"></td>
-          <td><button onclick="handleDelete(${activity.exerciseID})">Delete</button></td>
+          <td><input type="checkbox" ${activity.pin ? 'checked' : ''} onchange="handlePinStatus(${activity.ID})"></td>
+          <td><button onclick="handleDelete(${activity.ID})">Delete</button></td>
             </tbody>` }
     
     });        
@@ -73,10 +73,10 @@ async function handleDelete (activityID) {
 }
 
 //handles whether to pin an activity to the top of the table
-async function handlePinStatus (exerciseID) {
-    const activity = myActivities.find(act => act.exerciseID === exerciseID)
+async function handlePinStatus (id) {
+    const activity = myActivities.find(act => act.id === id)
     const changedActivity = {
-                      id: activity.exerciseID, 
+                      id: activity.id, 
                       ActivityType: activity.ActivityType, 
                       Distance: activity.Distance, 
                       DateCompleted: activity.dateCompleted, 
