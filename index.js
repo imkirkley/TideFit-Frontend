@@ -19,6 +19,10 @@ const getActivities = async function()
 
 }
 
+function pinStatusChangeHandler(exerciseID){
+    passInExerciseId(exerciseID)
+}
+
 function populateTable(myActivities) {
     //sorts by pin status and date, then gives descending order based on pin then date
     myActivities.sort((a, b) => {
@@ -55,6 +59,13 @@ function populateTable(myActivities) {
     html += `</table>`
     //pushes html to frontend 
     document.getElementById('maintable').innerHTML=html
+    
+    function passInExerciseId(exerciseID) {
+        const activity = myActivities.find(act => act.exerciseID === exerciseID);
+        if(activity) {
+            handlePinStatus(activity);
+        }
+    }
 }
 
 //handles deleting by changing the "deleted" var
@@ -71,12 +82,6 @@ async function handleDelete (activityID) {
 
     render()
 
-    function pinStatusChangeHandler(exerciseID) {
-        const activity = myActivities.find(act => act.exerciseID === exerciseID);
-        if(activity) {
-            handlePinStatus(activity);
-        }
-    }
 }
 
 //handles whether to pin an activity to the top of the table
