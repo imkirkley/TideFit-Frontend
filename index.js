@@ -90,11 +90,12 @@ async function handlePinStatus (myActivities, index) {
     render()
 }
 
-{
+
 // Grabs the modal and buttons
     const modal = document.getElementById('myModal')
     const openModalBtn = document.getElementById('openFormBtn')
     const closeModalBtn = document.getElementById('closeModal')
+    document.getElementById('activityForm').addEventListener('submit', handleModalSubmission);
 
 // Opens modal when the button is clicked
 openModalBtn.addEventListener('click', () => {
@@ -114,7 +115,8 @@ window.addEventListener('click', (event) => {
     });
 
 // Handle form submission
-async function handleModalSubmission(){
+async function handleModalSubmission(event){
+    event.preventDefault()
     //user input
     const activityType = document.getElementById('activityType').value
     const distance = document.getElementById('distance').value
@@ -126,7 +128,7 @@ async function handleModalSubmission(){
     const activity = {ActivityType: activityType, Distance: distance, DateCompleted: dateCompleted, Pin:pin, Deleted:false }
     try {
         const response = await fetch(url, {
-            method: "Post",
+            method: "POST",
             headers: {
                 Accept: "*/*",
                 "Content-Type": "application/json",
@@ -157,4 +159,3 @@ async function handleModalSubmission(){
     document.getElementById('pin').checked = false
     modal.style.display = 'none'
     };
-}
