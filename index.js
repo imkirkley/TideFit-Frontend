@@ -80,7 +80,7 @@ async function handlePinStatus (id) {
                       Distance: activity.Distance, 
                       DateCompleted: activity.dateCompleted, 
                       Pin: !activity.pin, 
-                      Deleted:activity.deleted,
+                      Deleted: activity.deleted,
     }
     
     await fetch(`${url}/${id}`, {
