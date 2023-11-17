@@ -1,5 +1,6 @@
 const url = 'http://localhost:5000/api/activity'
 
+//declare here in order to access the array from all functions (this would be a security issue irl)
 let myActivities = []
 
 const render = () => 
@@ -18,6 +19,7 @@ const getActivities = async function()
 
 }
 
+//populates the html with a table that contains all activities 
 function populateTable(myActivities) {
     //sorts by pin status and date, then gives descending order based on pin then date
     myActivities.sort((a, b) => {
@@ -83,8 +85,6 @@ async function handlePinStatus (id) {
                       Pin: !activity.pin, 
                       Deleted: activity.deleted,
     }
-    console.log(changedActivity)
-    
     await fetch(`${url}/${id}`, {
         method: 'PUT',
         body: JSON.stringify(changedActivity),
@@ -143,7 +143,7 @@ async function handleModalSubmission(event){
         if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
         }
-        // Re-render the table or UI
+        //render
         render();
 
     //close modal and erases data submission form
