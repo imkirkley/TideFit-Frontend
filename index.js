@@ -39,6 +39,10 @@ function populateTable(myActivities) {
         <th scope="col">Delete</th>
     </tr>
     </thead>`;
+    myActivities.forEach(function(activity){
+        console.log(activity.Id)
+
+    })
     myActivities.forEach(function(activity) {
         if(!activity.deleted){
             html += `<tbody>
@@ -46,8 +50,8 @@ function populateTable(myActivities) {
           <th scope="row">${activity.activityType}</th>
           <td>${activity.distance}</td>
           <td>${activity.dateCompleted}</td>
-          <td><input type="checkbox" ${activity.pin ? 'checked' : ''} onchange="handlePinStatus(${activity.ID})"></td>
-          <td><button onclick="handleDelete(${activity.ID})">Delete</button></td>
+          <td><input type="checkbox" ${activity.pin ? 'checked' : ''} onchange="handlePinStatus(${activity.Id})"></td>
+          <td><button onclick="handleDelete(${activity.Id})">Delete</button></td>
             </tbody>` }
     
     });        
