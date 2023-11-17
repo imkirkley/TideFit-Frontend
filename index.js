@@ -120,17 +120,35 @@ async function handleModalSubmission(){
     const distance = document.getElementById('distance').value
     const dateCompleted = document.getElementById('dateCompleted').value
     const pin = document.getElementById('pin').checked
+    //is this parsing the data into an incorrect format?
     
     //handle data
     let activity = {ActivityType: activityType, Distance: distance, DateCompleted:dateCompleted, Pin:pin, Deleted:false }
-    await fetch(url, {
-        method: "POST",
-        headers: {
-            accept: "*/*",
-            "content-type": "application/json",
-        },
-        body: JSON.stringify(activity),
-    })
+    try {
+        const response = await fetch(url, {
+            method: "POST",
+            headers: {
+                "Accept": "*/*",
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(activity),
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        // You can process the response if needed
+        const responseData = await response.json();
+        console.log('Success:', responseData);
+
+        // Re-render the table or UI
+        render();
+    } catch (error) {
+        console.error('Error during fetch operation:', error.message);
+        // Handle the error, e.g., show a message to the user
+    }
+   
     render();
 
     //close modal and erases data submission form
