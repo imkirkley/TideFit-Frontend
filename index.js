@@ -123,17 +123,16 @@ async function handleModalSubmission(){
     //is this parsing the data into an incorrect format?
     
     //handle data
-    let activity = {ActivityType: activityType, Distance: distance, DateCompleted:dateCompleted, Pin:pin, Deleted:false }
+    const activity = {ActivityType: activityType, Distance: distance, DateCompleted: dateCompleted, Pin:pin, Deleted:false }
     try {
         const response = await fetch(url, {
-            method: "POST",
+            method: "Post",
             headers: {
-                "Accept": "*/*",
+                Accept: "*/*",
                 "Content-Type": "application/json",
             },
             body: JSON.stringify(activity),
-        });
-
+        })
         if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
         }
@@ -149,7 +148,7 @@ async function handleModalSubmission(){
         // Handle the error, e.g., show a message to the user
     }
    
-    render();
+   
 
     //close modal and erases data submission form
     document.getElementById('activityType').value= ''
