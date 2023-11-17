@@ -1,6 +1,6 @@
 const url = 'http://localhost:5000/api/activity'
 
-const render = async () => 
+const render = () => 
 {
     getActivities()
 }
@@ -47,8 +47,8 @@ function populateTable(myActivities) {
           <th scope="row">${activity.activityType}</th>
           <td>${activity.distance}</td>
           <td>${activity.dateCompleted}</td>
-          <td><input type="checkbox" ${activity.pin ? 'checked' : ''} onchange=handlePinStatus(${myActivities}, ${index})></td>
-          <td><button onclick=handleDelete(${myActivities}, ${index})>Delete</button></td>
+          <td><input type="checkbox" ${activity.pin ? 'checked' : ''} onchange="handlePinStatus(${activity}})"></td>
+          <td><button onclick="handleDelete(${activity.exerciseID})">Delete</button></td>
             </tbody>` }
     
     });        
@@ -58,12 +58,11 @@ function populateTable(myActivities) {
 }
 
 //handles deleting by changing the "deleted" var
-async function handleDelete (myActivities, index) {
-    const exerciseID = myActivities[index].exerciseID;
+async function handleDelete (activityID) {
+    const exerciseID = activityID;
 
     await fetch(`${url}/${exerciseID}`, {
         method: 'DELETE',
-        body: JSON.stringify(myActivities[index]),
         headers: {
             accept: "*/*",
             "content-type": "application/json"
@@ -74,13 +73,19 @@ async function handleDelete (myActivities, index) {
 }
 
 //handles whether to pin an activity to the top of the table
-async function handlePinStatus (myActivities, index) {
-    myActivities[index].pin = !myActivities[index].pin
-    const exerciseID = myActivities[index].exerciseID
-
-    await fetch(`${url}/${exerciseID}`, {
+async function handlePinStatus (activity) {
+    const changedActivity = {
+                      id: activity.exerciseID, 
+                      ActivityType: activity.ActivityType, 
+                      Distance: activity.Distance, 
+                      DateCompleted: activity.dateCompleted, 
+                      Pin: !activity.pin, 
+                      Deleted:activity.deleted
+    }
+    
+    await fetch(`${url}/${activity.exerciseID}`, {
         method: 'PUT',
-        body: JSON.stringify(myActivities[index]),
+        body: JSON.stringify(changedActivity),
         headers: {
             accept: "*/*",
             "content-type": "application/json"
@@ -125,7 +130,6 @@ async function handleModalSubmission(event){
     
     //handle data
     const activity = {ActivityType: activityType, Distance: distance, DateCompleted: dateCompleted, Pin:pin, Deleted:false }
-    console.log(activity)
     const response = await fetch(url, {
             method: "POST",
             headers: {
