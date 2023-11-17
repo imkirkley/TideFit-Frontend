@@ -75,9 +75,7 @@ async function handleDelete (activityID) {
 //handles whether to pin an activity to the top of the table
 async function handlePinStatus (id) {
     const activity = myActivities.find(act => act.id === id)
-    const findId= activity.id
     const changedActivity = {
-                      id: activity.id, 
                       ActivityType: activity.ActivityType, 
                       Distance: activity.Distance, 
                       DateCompleted: activity.dateCompleted, 
@@ -85,7 +83,7 @@ async function handlePinStatus (id) {
                       Deleted:activity.deleted,
     }
     
-    await fetch(`${url}/${findId}`, {
+    await fetch(`${url}/${id}`, {
         method: 'PUT',
         body: JSON.stringify(changedActivity),
         headers: {
