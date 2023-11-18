@@ -1,4 +1,4 @@
-const url = 'http://localhost:5000/api/activity'
+const url = 'https://pa4databaseside-569b54525a50.herokuapp.com/api/activity'
 
 //declare here in order to access the array from all functions (this would be a security issue irl)
 let myActivities = []
